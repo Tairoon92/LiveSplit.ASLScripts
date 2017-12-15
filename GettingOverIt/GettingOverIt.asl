@@ -1,3 +1,10 @@
+state("GettingOverIt" , "1.54")
+{	
+	float timer : 0x10651A4, 0x4, 0x2E8, 0xC, 0xC, 0x94;
+	float x		: 0x10AD504, 0x0, 0x704, 0x7A4, 0x20, 0x60;
+	float y		: 0x10AD504, 0x0, 0x704, 0x7A4, 0x20, 0x64;
+}
+
 state("GettingOverIt" , "1.52")
 {	
 	float timer : 0x10621A4, 0x4, 0x2E8, 0xC, 0xC, 0x94;
@@ -30,9 +37,10 @@ startup
 init
 {
 	int size = modules.First().ModuleMemorySize;
-	if (size == 19267584) //1.51 or 1.52, pointers arent compatible though
-		version = "1.52";
-	if (size == 1945600)  //1.5 or 1.51
+	
+	if (size == 19279872)
+		version = "1.54";
+ 	if (size == 19267584 || size == 1945600) 
 		version = "1.51";
 	else if (size == 19251200)
 		version = "1.3";
