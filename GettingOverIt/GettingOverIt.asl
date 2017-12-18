@@ -1,8 +1,8 @@
 state("GettingOverIt" , "1.54")
 {	
-	float timer 	: 0x10651A4, 0x4, 0x2E8, 0xC, 0xC, 0x94;
-	float x		: 0x010AE2F4, 0x5D4, 0xC4, 0xF0, 0x8, 0x0;
-	float y		: 0x010AE2F4, 0x5D4, 0xC4, 0xF0, 0x8, 0x4;
+	float timer : 0x10651A4, 0x4, 0x2E8, 0xC, 0xC, 0x94;
+	float x		: 0x10C3D0C, 0xB0, 0x8, 0x1C, 0x60, 0x60;
+	float y		: 0x10C3D0C, 0xB0, 0x8, 0x1C, 0x60, 0x64;
 }
 
 state("GettingOverIt" , "1.52")
@@ -85,7 +85,7 @@ split
 		return true;
 	}
 	
-	if(!old.Chimney && current.x > 23 && current.y > 81)  {
+	if(!old.Chimney && current.x > 24 && current.y > 82)  {
 		current.Chimney = true;
 		return true;
 	}
@@ -154,5 +154,5 @@ start
 	vars.LastValidTime = 0.0;
 	
 	current.GameTime = TimeSpan.Zero;
-	return current.timer > 0;
+	return current.timer > 0 && current.timer < 0.1 && current.x > -44.35 && current.x < -44.2 && current.y > -2.5 && current.y < -2.4;
 }
