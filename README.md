@@ -1,6 +1,6 @@
 # LiveSplit.ASLScripts
 
-##Getting Over It
+## Getting Over It
 - Tested and functional on 1.572
 - Automatic Start/Reset of Runs. Ingame Timer and automatic splitting.
 - There are 10 splits, these are the names that have been popular for the segments
