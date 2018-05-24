@@ -1,8 +1,32 @@
+state("GettingOverIt" , "1.583")
+{	
+	//beta version
+	float timer : "UnityPlayer.dll", 0x00FEDCEC, 0x2C0, 0x124, 0x8, 0x44, 0x64;
+	float x		: "UnityPlayer.dll", 0x00FE7474, 0x758, 0x88, 0x4AC, 0x278, 0x34;
+	float y		: "UnityPlayer.dll", 0x00FE7474, 0x758, 0x88, 0x4AC, 0x278, 0x38;
+}
+
+state("GettingOverIt" , "1.581")
+{	
+	//beta version
+	float timer : "UnityPlayer.dll", 0x00FBA7D0, 0x21C, 0x3E8, 0x8, 0xDC, 0x68;
+	float x		: "UnityPlayer.dll", 0x00FD7770, 0x0, 0x8, 0x1C, 0x60, 0x60;
+	float y		: "UnityPlayer.dll", 0x00FD7770, 0x0, 0x8, 0x1C, 0x60, 0x64;
+}
+
+state("GettingOverIt" , "1.58")
+{	
+	//beta version
+	float timer : "UnityPlayer.dll", 0x00FE8810, 0x5C0, 0x260, 0x5A4, 0x44, 0xD0;
+	float x		: "UnityPlayer.dll", 0x00FD7770, 0x0, 0x8, 0x1C, 0x60, 0x60;
+	float y		: "UnityPlayer.dll", 0x00FD7770, 0x0, 0x8, 0x1C, 0x60, 0x64;
+}
+
 state("GettingOverIt" , "1.54")
 {	
-	float timer : 0x10651A4, 0x4, 0x2E8, 0xC, 0xC, 0x94;
-	float x		: 0x10C3D0C, 0xB0, 0x8, 0x1C, 0x60, 0x60;
-	float y		: 0x10C3D0C, 0xB0, 0x8, 0x1C, 0x60, 0x64;
+	float timer : 0x010BC834, 0x4A4;
+	float x		: 0x10C3D08, 0x4C, 0x2EC, 0x0, 0x5C, 0x14C;
+	float y		: 0x10C3D08, 0x4C, 0x2DC, 0x94, 0x5C, 0xB0;
 }
 
 state("GettingOverIt" , "1.52")
@@ -31,26 +55,33 @@ startup
 	//runs once at the start
 	Func<float, bool> zero = (x) => Math.Abs(x) < 1e-5;
 	vars.zero = zero;
-	//refreshRate = 100;
+	refreshRate = 100;
+
 }
 
 init
 {
 	int size = modules.First().ModuleMemorySize;
-	
+
+	if (size == 1740800)
+		version = "1.583";
 	if (size == 19279872)
 		version = "1.54";
  	if (size == 19267584 || size == 1945600) 
 		version = "1.51";
-	else if (size == 19251200)
-		version = "1.3";
+	if (size == 19251200)
+		version = "1.3";	
+	if (version == "")
+		print("Incompatible game version\nMemory size: " + size.ToString());
 }
+
+
 
 update
 {	
 	//always runs first, following actions only run when this doesnt return false
 
-	if(timer.CurrentPhase == TimerPhase.Ended && current.x > -44.35 && current.x < -44.2 && current.y > -2.5 && current.y < -2.4 && current.timer < 0.1 && current.timer != 0 && vars.LastValidTime > current.timer) {
+	if(timer.CurrentPhase == TimerPhase.Ended && current.x > -44.35 && current.x < -44.2 && current.y > -2.5 && current.y < -2.40 && current.timer < 0.1 && vars.LastValidTime > current.timer) {
 		vars.tm = new TimerModel { CurrentState = timer };
 		vars.tm.Reset();
 	}
@@ -59,6 +90,7 @@ update
 		vars.LastValidTime = current.timer;
 
 	return true;
+
 }
 
 isLoading 
@@ -74,7 +106,7 @@ gameTime
 reset
 {	
 	//only runs if timer is running or paused
-	return current.x > -44.35 && current.x < -44.2 && current.y > -2.5 && current.y < -2.4 && current.timer < 0.1 && current.timer != 0 && vars.LastValidTime > current.timer;
+	return current.x > -44.35 && current.x < -44.2 && current.y > -2.5 && current.y < -2.40 && current.timer < 0.1 && vars.LastValidTime > current.timer;
 }
 
 split
