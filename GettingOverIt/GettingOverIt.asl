@@ -1,3 +1,10 @@
+state("GettingOverIt" , "1.5861")
+{	
+	float timer : "UnityPlayer.dll", 0x00FF0DD8, 0x0, 0x37C, 0x24, 0x38, 0x7A8;
+	float x		: "UnityPlayer.dll", 0x00FEF664, 0x4C, 0x8, 0x68, 0x50;
+	float y		: "UnityPlayer.dll", 0x00FEF664, 0x4C, 0x8, 0x68, 0x54;
+}
+
 state("GettingOverIt" , "1.583")
 {	
 	//beta version
